@@ -1,5 +1,6 @@
 import React from "react";
 import SeriesList from "../../components/SeriesList";
+import * as Api from "../../services";
 
 type State = {
   series: any[];
@@ -10,18 +11,22 @@ class Series extends React.Component<{}, State> {
     series: []
   };
 
-  async componentDidMount(): Promise<void> {
-    const response = await fetch(
-      "http://api.tvmaze.com/search/shows?q=Vikings"
+  onSeriesInputChange = (e: any) => {
+    Api.SeriesService.getShows(e.target.value).then(s =>
+      this.setState({ series: s })
     );
-    const json = await response.json();
-    this.setState({ series: json as any[] });
-  }
+
+    console.log(e);
+    console.log(e.target.value);
+  };
 
   render(): React.ReactNode {
     return (
       <div>
         The length of series array - {this.state.series.length}
+        <div>
+          <input type="text" onChange={this.onSeriesInputChange} />
+        </div>
         <SeriesList list={this.state.series} />
       </div>
     );
