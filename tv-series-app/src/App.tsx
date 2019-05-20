@@ -1,11 +1,6 @@
 import React from 'react';
 import './App.css';
-
-const Intro = (props: any) => (
-  <p className='App-intro'>
-    Our first functional component.
-  </p>
-);
+import Intro from './components/Intro';
 
 const App: React.FC = () => {
   return (
@@ -13,7 +8,7 @@ const App: React.FC = () => {
       <header className="App-header">
         <h1 className='App-title'>TV Series List</h1>
       </header>
-      <Intro />
+      <Intro message='Here you can find all of your most loved series' />
     </div>
   );
 }
