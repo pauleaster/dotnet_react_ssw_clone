@@ -11,6 +11,14 @@ class App extends React.Component<{}, State> {
     series: [],
   };
 
+  componentDidMount(): void {
+    const series = ['Vikings', 'Game of Thrones'];
+
+    setTimeout(() => {
+      this.setState({ series });
+    }, 2000);
+  }
+
   render(): React.ReactNode {
     return (
       <div className="App">
