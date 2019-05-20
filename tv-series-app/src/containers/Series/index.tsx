@@ -4,30 +4,52 @@ import * as Api from "../../services";
 
 type State = {
   series: any[];
+  seriesName: string;
+  isFetching: boolean;
 };
 
 class Series extends React.Component<{}, State> {
   state = {
-    series: []
+    series: [],
+    seriesName: '',
+    isFetching: false,
   };
 
   onSeriesInputChange = (e: any) => {
-    Api.SeriesService.getShows(e.target.value).then(s =>
-      this.setState({ series: s })
-    );
+    this.setState({ seriesName: e.target.value, isFetching: true });
 
-    console.log(e);
-    console.log(e.target.value);
-  };
+    Api.SeriesService.getShows(e.target.value).then(s =>
+      this.setState({ series: s, isFetching: false })
+    );
+ };
 
   render(): React.ReactNode {
+    const { series, seriesName, isFetching } = this.state;
+
     return (
       <div>
-        The length of series array - {this.state.series.length}
         <div>
-          <input type="text" onChange={this.onSeriesInputChange} />
+          <input 
+            value={seriesName}
+            type="text" 
+            onChange={this.onSeriesInputChange} />
         </div>
-        <SeriesList list={this.state.series} />
+        {
+          !isFetching && series.length === 0 && seriesName.trim() === ''
+          &&
+          <p>Please enter series name into the input.</p>
+        }
+        {
+          !isFetching && series.length === 0 && seriesName.trim() !== ''
+          &&
+          <p>No TV series have been found with this name.</p>
+        }
+        {
+          isFetching && <div>Loading...</div>
+        }
+        {
+          !isFetching && <SeriesList list={this.state.series} />
+        }
       </div>
     );
   }
