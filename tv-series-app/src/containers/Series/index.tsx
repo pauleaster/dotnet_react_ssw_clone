@@ -1,6 +1,7 @@
 import React from "react";
 import SeriesList from "../../components/SeriesList";
 import * as Api from "../../services";
+import Loader from "../../components/Loader";
 
 type State = {
   series: any[];
@@ -45,7 +46,7 @@ class Series extends React.Component<{}, State> {
           <p>No TV series have been found with this name.</p>
         }
         {
-          isFetching && <div>Loading...</div>
+          isFetching && <Loader />
         }
         {
           !isFetching && <SeriesList list={this.state.series} />
