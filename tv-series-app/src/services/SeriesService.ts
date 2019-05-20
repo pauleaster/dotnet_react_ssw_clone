@@ -7,4 +7,13 @@ export class SeriesService {
 
     return json;
   }
+
+  static async getShow(id: string): Promise<any> {
+    const response = await fetch(
+      `http://api.tvmaze.com/shows/${id}?embed=episodes`
+    );
+    const json = await response.json();
+
+    return json;
+  }
 }

@@ -1,7 +1,10 @@
 import React from 'react';
 import * as Router from 'react-router-dom';
+import * as Api from "../../services";
+import Loader from "../../components/Loader";
 
 type State = {
+  show: any;
 }
 
 type RouterProps = {
@@ -12,12 +15,39 @@ interface Props extends Router.RouteComponentProps<RouterProps> {
 }
 
 class SingleSeries extends React.Component<Props, State> {
+  state = {
+    show: null as any,
+  };
+
+  async componentDidMount(): Promise<void> {
+    const { id } = this.props.match.params;
+
+    const show = await Api.SeriesService.getShow(id);
+    this.setState({ show });
+  }
+
   render(): React.ReactNode {
-    console.log(this.props);
+    const { show } = this.state;
+    console.log('show:', show);
 
     return (
       <div>
-        <p>Single Series - the show id will be {this.props.match.params.id}</p>
+        {
+          !show && <Loader />
+        }
+        {
+          show
+          &&
+          <div>
+            <p>{show.name}</p>
+            <p>Premiered - {show.premiered}</p>
+            <p>Rating - {show.rating.average}</p>
+            <p>Episodes - {show._embedded.episodes.length}</p>
+            <p>
+              <img alt='Show' src={show.image.medium} />
+            </p>
+          </div>
+        }
       </div>
     );
   }

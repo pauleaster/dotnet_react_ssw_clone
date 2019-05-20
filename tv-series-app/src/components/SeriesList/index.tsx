@@ -1,4 +1,5 @@
 import React from "react";
+import * as Router from 'react-router-dom';
 import "./index.scss";
 
 type SeriesListItemProps = {
@@ -6,7 +7,11 @@ type SeriesListItemProps = {
 };
 
 const SeriesListItem = ({ series }: SeriesListItemProps) => (
-  <li>{series.show.name}</li>
+  <li>
+    <Router.Link to={`/series/${series.show.id}`}>
+      {series.show.name}
+    </Router.Link>
+  </li>
 );
 
 type Props = {
