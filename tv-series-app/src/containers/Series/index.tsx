@@ -2,6 +2,7 @@ import React from "react";
 import SeriesList from "../../components/SeriesList";
 import * as Api from "../../services";
 import Loader from "../../components/Loader";
+import Intro from "../../components/Intro";
 
 type State = {
   series: any[];
@@ -29,6 +30,7 @@ class Series extends React.Component<{}, State> {
 
     return (
       <div>
+        <Intro message='Here you can find all of your most loved series' />
         <div>
           <input 
             value={seriesName}
