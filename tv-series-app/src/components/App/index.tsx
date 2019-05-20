@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 import Intro from '../Intro';
+import 'whatwg-fetch';
 
 type State = {
-  series: string[],
+  series: any[],
 }
 
 class App extends React.Component<{}, State> {
@@ -11,12 +12,10 @@ class App extends React.Component<{}, State> {
     series: [],
   };
 
-  componentDidMount(): void {
-    const series = ['Vikings', 'Game of Thrones'];
-
-    setTimeout(() => {
-      this.setState({ series });
-    }, 2000);
+  async componentDidMount(): Promise<void> {
+    const response = await fetch('http://api.tvmaze.com/search/shows?q=Vikings');
+    const json = await response.json();
+    this.setState({ series: json as any[] });
   }
 
   render(): React.ReactNode {
