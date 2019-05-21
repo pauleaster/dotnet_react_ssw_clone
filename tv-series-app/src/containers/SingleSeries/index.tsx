@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Router from 'react-router-dom';
 import * as Api from "../../services";
-import Loader from "../../components/Loader";
+import * as Components from "../../components";
 
 type State = {
   show: any;
@@ -14,7 +14,7 @@ type RouterProps = {
 interface Props extends Router.RouteComponentProps<RouterProps> {
 }
 
-class SingleSeries extends React.Component<Props, State> {
+export class SingleSeries extends React.Component<Props, State> {
   state = {
     show: null as any,
   };
@@ -33,7 +33,7 @@ class SingleSeries extends React.Component<Props, State> {
     return (
       <div>
         {
-          !show && <Loader />
+          !show && <Components.Loader />
         }
         {
           show

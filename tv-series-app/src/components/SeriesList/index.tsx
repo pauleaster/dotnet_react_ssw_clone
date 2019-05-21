@@ -18,7 +18,7 @@ type Props = {
   list: any[];
 };
 
-const SeriesList = (props: Props) => (
+export const SeriesList = (props: Props) => (
   <div>
     <ul className="series-list">
       {props.list.map(series => (

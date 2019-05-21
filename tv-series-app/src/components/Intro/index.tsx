@@ -4,7 +4,7 @@ type Props = {
   message: string,
 }
 
-const Intro = (props: Props) => (
+export const Intro = (props: Props) => (
   <p className='App-intro'>
     {props.message}
   </p>

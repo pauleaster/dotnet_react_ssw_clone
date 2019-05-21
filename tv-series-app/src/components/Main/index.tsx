@@ -1,15 +1,14 @@
 import React from 'react';
 import * as Router from 'react-router-dom';
-import Series from '../../containers/Series';
-import SingleSeries from '../../containers/SingleSeries';
+import * as Containers from '../../containers';
 
 type Props = {
 }
 
-const Main = (props: Props) => (
+export const Main = (props: Props) => (
   <Router.Switch>
-    <Router.Route exact path='/' component={Series}/>
-    <Router.Route path='/series/:id' component={SingleSeries} />
+    <Router.Route exact path='/' component={Containers.Series}/>
+    <Router.Route path='/series/:id' component={Containers.SingleSeries} />
   </Router.Switch>
 );
 

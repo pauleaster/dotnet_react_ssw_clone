@@ -1,8 +1,6 @@
 import React from "react";
-import SeriesList from "../../components/SeriesList";
 import * as Api from "../../services";
-import Loader from "../../components/Loader";
-import Intro from "../../components/Intro";
+import * as Components from "../../components";
 
 type State = {
   series: any[];
@@ -10,7 +8,7 @@ type State = {
   isFetching: boolean;
 };
 
-class Series extends React.Component<{}, State> {
+export class Series extends React.Component<{}, State> {
   state = {
     series: [],
     seriesName: '',
@@ -30,7 +28,7 @@ class Series extends React.Component<{}, State> {
 
     return (
       <div>
-        <Intro message='Here you can find all of your most loved series' />
+        <Components.Intro message='Here you can find all of your most loved series' />
         <div>
           <input 
             value={seriesName}
@@ -48,10 +46,10 @@ class Series extends React.Component<{}, State> {
           <p>No TV series have been found with this name.</p>
         }
         {
-          isFetching && <Loader />
+          isFetching && <Components.Loader />
         }
         {
-          !isFetching && <SeriesList list={this.state.series} />
+          !isFetching && <Components.SeriesList list={this.state.series} />
         }
       </div>
     );

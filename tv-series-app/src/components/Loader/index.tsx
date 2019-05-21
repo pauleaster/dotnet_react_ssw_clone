@@ -4,7 +4,7 @@ import loaderSrc from '../../assets/loader.gif';
 type Props = {
 }
 
-const Loader = (props: Props) => (
+export const Loader = (props: Props) => (
   <div>
       <img
         style={{width: '75px' }}
