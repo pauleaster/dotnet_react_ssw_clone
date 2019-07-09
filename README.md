@@ -1,15 +1,5 @@
-# Course [React Fundamentals - Full Course for Beginners](https://www.youtube.com/watch?v=6Ied4aZxUzc)
+# SugarLearning - Induction React
 
-## Commands
-- npm start
-  > Starts the development server.
+> Adapted from [React Fundamentals - Full Course for Beginners](https://www.youtube.com/watch?v=6Ied4aZxUzc)
 
-- npm run build
-   > Bundles the app into static files for production.
-
-- npm test
-   > Starts the test runner.
-
--  npm run eject
-   > Removes this tool and copies build dependencies, configuration files
-   > and scripts into the app directory. If you do this, you can’t go back!
+SugarLearning item for SSW developers for React induction.
