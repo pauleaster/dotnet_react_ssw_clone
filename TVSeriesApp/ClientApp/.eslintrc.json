@@ -1,0 +1,77 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:react/recommended",
+    "eslint:recommended"
+  ],
+  "plugins": ["@typescript-eslint", "react-hooks", "jest", "prettier"],
+  "env": {
+    "browser": true,
+    "jest/globals": true,
+    "jest": true
+  },
+  "rules": {
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "log",
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "no-useless-constructor": "error",
+    "no-extra-parens": [
+      "off",
+      "all"
+    ],
+    "react/sort-comp": [
+      "error",
+      {
+        "order": [
+          "instance-variables",
+          "constructor",
+          "static-methods",
+          "lifecycle",
+          "render",
+          "everything-else"
+        ],
+        "groups": {
+          "lifecycle": [ ]
+        }
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "no-public"
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/jsx-filename-extension": ["warn", {
+      "extensions": [".jsx", ".tsx"]
+    }],
+    "react/destructuring-assignment": "off"
+  },
+  "globals": {
+    "process": "readonly"
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "parser": "@typescript-eslint/parser"
+}

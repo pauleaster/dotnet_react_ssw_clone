@@ -1,0 +1,16 @@
+{
+  "prettier.eslintIntegration": true,
+  // "eslint.trace.server": "messages", /* Enable this to debug ESLint loading errors: */
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+}
