@@ -1,24 +1,22 @@
-import React from "react";
+import React from 'react';
 import * as Router from 'react-router-dom';
-import "./index.scss";
+import './index.scss';
 
-type SeriesListItemProps = {
+interface SeriesListItemProps {
   series: any;
-};
+}
 
-const SeriesListItem = ({ series }: SeriesListItemProps) => (
+const SeriesListItem = ({ series }: SeriesListItemProps): any => (
   <li>
-    <Router.Link to={`/series/${series.show.id}`}>
-      {series.show.name}
-    </Router.Link>
+    <Router.Link to={`/series/${series.show.id}`}>{series.show.name}</Router.Link>
   </li>
 );
 
-type Props = {
+interface Props {
   list: any[];
-};
+}
 
-export const SeriesList = (props: Props) => (
+export const SeriesList = (props: Props): any => (
   <div>
     <ul className="series-list">
       {props.list.map(series => (

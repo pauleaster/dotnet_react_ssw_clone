@@ -1,30 +1,20 @@
 import React from 'react';
 import * as Router from 'react-router-dom';
-import * as Api from "../../services";
-import * as Components from "../../components";
+import * as Api from '../../services';
+import { Loader } from '../../components/Loader';
 
-type State = {
+interface State {
   show: any;
 }
 
-type RouterProps = {
+interface RouterProps {
   id: string;
 }
 
-interface Props extends Router.RouteComponentProps<RouterProps> {
-}
-
-export class SingleSeries extends React.Component<Props, State> {
+export class SingleSeries extends React.Component<Router.RouteComponentProps<RouterProps>, State> {
   state = {
     show: null as any,
   };
-
-  async componentDidMount(): Promise<void> {
-    const { id } = this.props.match.params;
-
-    const show = await Api.SeriesService.getShow(id);
-    this.setState({ show });
-  }
 
   render(): React.ReactNode {
     const { show } = this.state;
@@ -32,24 +22,36 @@ export class SingleSeries extends React.Component<Props, State> {
 
     return (
       <div>
-        {
-          !show && <Components.Loader />
-        }
-        {
-          show
-          &&
+        {!show && <Loader />}
+        {show && (
           <div>
             <p>{show.name}</p>
-            <p>Premiered - {show.premiered}</p>
-            <p>Rating - {show.rating.average}</p>
-            <p>Episodes - {show._embedded.episodes.length}</p>
             <p>
-              <img alt='Show' src={show.image.medium} />
+              <span>Premiered - </span>
+              <span>{show.premiered}</span>
+            </p>
+            <p>
+              <span>Rating - </span>
+              <span>{show.rating.average}</span>
+            </p>
+            <p>
+              <span>Episodes - </span>
+              <span>{show._embedded.episodes.length}</span>
+            </p>
+            <p>
+              <img alt="Show" src={show.image.medium} />
             </p>
           </div>
-        }
+        )}
       </div>
     );
+  }
+
+  async componentDidMount(): Promise<void> {
+    const { id } = this.props.match.params;
+
+    const show = await Api.SeriesService.getShow(id);
+    this.setState({ show });
   }
 }
 
