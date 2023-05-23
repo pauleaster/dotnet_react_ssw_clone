@@ -1,0 +1,16 @@
+
+create python virtual env:
+C:\Python27\python.exe -m virtualenv -p C:\Python27\python.exe node_python
+activate:
+node_python\Scripts\activate
+
+
+Install node-sass@6:
+npm install node-sass
+
+
+Enable Open SSL legacy
+$env:NODE_OPTIONS = "--openssl-legacy-provider"
+
+Enable line numbers in stack trace:
+set NODE_OPTIONS="--enable-source-maps --stack-trace-limit=100"

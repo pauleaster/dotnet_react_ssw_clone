@@ -6,20 +6,18 @@
   "dependencies": {
     "@types/jest": "24.0.13",
     "@types/node": "12.0.2",
-    "@types/react": "16.8.17",
-    "@types/react-dom": "16.8.4",
     "@types/react-router-dom": "^4.3.3",
-    "node-sass": "6.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.0.1",
-    "typescript": "3.4.5",
-    "whatwg-fetch": "^3.0.0"
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "react-scripts": "latest",
+    "typescript": "latest",
+    "whatwg-fetch": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:debug": "cross-env NODE_ENV=debug react-scripts build",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -40,8 +38,11 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
+    "cross-env": "^7.0.3",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-react": "^1.1.7",
@@ -51,6 +52,9 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react-hooks": "^1.6.1",
     "prettier": "^1.18.2",
-    "typescript-eslint-parser": "^22.0.0"
+    "sass": "^1.62.1",
+    "sass-loader": "^13.3.0",
+    "typescript-eslint-parser": "^22.0.0",
+    "webpack": "^5.83.1"
   }
 }
