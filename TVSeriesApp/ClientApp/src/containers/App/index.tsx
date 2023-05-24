@@ -22,8 +22,9 @@ export class App extends React.Component<object, object> {
     );
   }
 
-  // NOTE: Keep this here as we need to trigger app wide data load.
-  componentDidMount();
+  componentDidMount(): void {
+    // NOTE: Keep this here as we need to trigger app wide data load.
+  }
 }
 
 export default App;

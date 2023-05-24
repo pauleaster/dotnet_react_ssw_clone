@@ -1,61 +1,64 @@
-import React from 'react';
-import * as Router from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import * as Api from '../../services';
 import { Loader } from '../../components/Loader';
 
-interface State {
-  show: any;
+interface Show {
+  name: string;
+  premiered: string;
+  rating: {
+    average: number;
+  };
+  embedded: {
+    episodes: any[];
+  };
+  image: {
+    medium: string;
+  };
 }
 
-interface RouterProps {
-  id: string;
-}
+function SingleSeries(): React.JSX.Element {
+  const { id } = useParams<{ id: string }>();
+  const [show, setShow] = useState<Show | null>(null);
 
-export class SingleSeries extends React.Component<RouteComponentProps<RouterProps>, State> {
-  constructor(props: RouteComponentProps<RouterProps>) {
-    super(props);
-    this.state = {
-      show: null,
+  useEffect(() => {
+    const fetchShow = async (): Promise<void> => {
+      if (id) {
+        const Innershow = await Api.SeriesService.getShow(id);
+        setShow(Innershow);
+      }
     };
-  }
 
-  render(): React.ReactNode {
-    const { show } = this.state;
-    console.log('show:', show);
+    fetchShow();
+  }, [id]);
 
-    return (
-      <div>
-        {!show && <Loader />}
-        {show && (
-          <div>
-            <p>{show.name}</p>
-            <p>
-              <span>Premiered - </span>
-              <span>{show.premiered}</span>
-            </p>
-            <p>
-              <span>Rating - </span>
-              <span>{show.rating.average}</span>
-            </p>
-            <p>
-              <span>Episodes - </span>
-              <span>{show.embedded.episodes.length}</span>
-            </p>
-            <p>
-              <img alt="Show" src={show.image.medium} />
-            </p>
-          </div>
-        )}
-      </div>
-    );
-  }
+  console.log('show:', show);
 
-  async componentDidMount(): Promise<void> {
-    const { id } = this.props.match.params;
-
-    const show = await Api.SeriesService.getShow(id);
-    this.setState({ show });
-  }
+  return (
+    <div>
+      {!show && <Loader />}
+      {show && (
+        <div>
+          <p>{show.name}</p>
+          <p>
+            <span>Premiered - </span>
+            <span>{show.premiered}</span>
+          </p>
+          <p>
+            <span>Rating - </span>
+            <span>{show.rating.average}</span>
+          </p>
+          <p>
+            <span>Episodes - </span>
+            <span>{show.embedded.episodes.length}</span>
+          </p>
+          <p>
+            <img alt="Show" src={show.image.medium} />
+          </p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default SingleSeries;
