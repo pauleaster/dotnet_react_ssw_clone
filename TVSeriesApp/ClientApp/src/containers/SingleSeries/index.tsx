@@ -24,8 +24,8 @@ function SingleSeries(): React.JSX.Element {
   useEffect(() => {
     const fetchShow = async (): Promise<void> => {
       if (id) {
-        const Innershow = await Api.SeriesService.getShow(id);
-        setShow(Innershow);
+        const innerShow = await Api.SeriesService.getShow(id);
+        setShow(innerShow);
       }
     };
 
