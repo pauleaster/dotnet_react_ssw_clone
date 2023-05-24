@@ -4,7 +4,7 @@ import './App.css';
 import 'whatwg-fetch';
 import { Main } from '../../components/Main';
 
-export class App extends React.Component<{}, {}> {
+export class App extends React.Component<object, object> {
   render(): React.ReactNode {
     return (
       <Router.BrowserRouter>
@@ -23,7 +23,7 @@ export class App extends React.Component<{}, {}> {
   }
 
   // NOTE: Keep this here as we need to trigger app wide data load.
-  componentDidMount = (): void => {};
+  componentDidMount();
 }
 
 export default App;

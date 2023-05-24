@@ -4,6 +4,8 @@ interface Props {
   message: string;
 }
 
-export const Intro = (props: Props): any => <p className="App-intro">{props.message}</p>;
+export function Intro(props: Props): any {
+  return <p className="App-intro">{props.message}</p>;
+}
 
 export default Intro;

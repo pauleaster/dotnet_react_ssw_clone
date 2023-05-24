@@ -10,12 +10,15 @@ interface State {
   isFetching: boolean;
 }
 
-export class Series extends React.Component<{}, State> {
-  state = {
-    series: [],
-    seriesName: '',
-    isFetching: false,
-  };
+export class Series extends React.Component<object, State> {
+  constructor(props: object) {
+    super(props);
+    this.state = {
+      series: [],
+      seriesName: '',
+      isFetching: false,
+    };
+  }
 
   render(): React.ReactNode {
     const { series, seriesName, isFetching } = this.state;
@@ -38,7 +41,7 @@ export class Series extends React.Component<{}, State> {
     );
   }
 
-  onSeriesInputChange = (e: any) => {
+  onSeriesInputChange = (e: any): void => {
     this.setState({ seriesName: e.target.value, isFetching: true });
 
     Api.SeriesService.getShows(e.target.value).then((s: any[]) => this.setState({ series: s, isFetching: false }));

@@ -11,10 +11,13 @@ interface RouterProps {
   id: string;
 }
 
-export class SingleSeries extends React.Component<Router.RouteComponentProps<RouterProps>, State> {
-  state = {
-    show: null as any,
-  };
+export class SingleSeries extends React.Component<RouteComponentProps<RouterProps>, State> {
+  constructor(props: RouteComponentProps<RouterProps>) {
+    super(props);
+    this.state = {
+      show: null,
+    };
+  }
 
   render(): React.ReactNode {
     const { show } = this.state;

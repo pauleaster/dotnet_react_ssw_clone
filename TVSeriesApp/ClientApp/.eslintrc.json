@@ -4,9 +4,9 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
-    "prettier/@typescript-eslint",
     "plugin:react/recommended",
-    "eslint:recommended"
+    "eslint:recommended",
+    "prettier"
   ],
   "plugins": ["@typescript-eslint", "react-hooks", "jest", "prettier"],
   "env": {
@@ -69,6 +69,12 @@
       {
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
       }
     ]
   },
