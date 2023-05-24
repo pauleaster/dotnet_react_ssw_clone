@@ -36,7 +36,7 @@ export class SingleSeries extends React.Component<Router.RouteComponentProps<Rou
             </p>
             <p>
               <span>Episodes - </span>
-              <span>{show._embedded.episodes.length}</span>
+              <span>{show.embedded.episodes.length}</span>
             </p>
             <p>
               <img alt="Show" src={show.image.medium} />

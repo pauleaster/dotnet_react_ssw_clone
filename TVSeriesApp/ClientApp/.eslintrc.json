@@ -62,7 +62,15 @@
     "react/jsx-filename-extension": ["warn", {
       "extensions": [".jsx", ".tsx"]
     }],
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
   "globals": {
     "process": "readonly"
