@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:debug": "cross-env NODE_ENV=debug react-scripts build",
+    "build:development" : "cross-env NODE_ENV=development react-scripts build",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
