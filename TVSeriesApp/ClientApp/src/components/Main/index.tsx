@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Series } from '../../containers/Series';
-import { SingleSeries } from '../../containers/SingleSeries';
+import SingleSeries from '../../containers/SingleSeries';
 
 export function Main(): any {
   return (
