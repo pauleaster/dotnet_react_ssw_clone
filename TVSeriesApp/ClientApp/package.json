@@ -9,6 +9,7 @@
     "@types/node": "20.2.3",
     "@types/react-router-dom": "5.3.3",
     "fork-ts-checker-webpack-plugin": "^8.0.0",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.11.2",
@@ -23,7 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:debug": "cross-env NODE_ENV=debug react-scripts build",
-    "build:development" : "cross-env NODE_ENV=development react-scripts build",
+    "build:development": "cross-env NODE_ENV=development react-scripts build",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
