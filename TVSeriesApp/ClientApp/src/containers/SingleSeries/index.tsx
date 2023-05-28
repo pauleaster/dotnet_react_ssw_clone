@@ -50,6 +50,7 @@ function SingleSeries(): React.JSX.Element {
           </p>
           <p>
             <span>Episodes - </span>
+            {/* eslint-disable-next-line no-underscore-dangle */}
             <span>{show._embedded.episodes.length}</span>
           </p>
           <p>
