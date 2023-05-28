@@ -9,7 +9,7 @@ interface Show {
   rating: {
     average: number;
   };
-  embedded: {
+  _embedded: {
     episodes: any[];
   };
   image: {
@@ -50,7 +50,7 @@ function SingleSeries(): React.JSX.Element {
           </p>
           <p>
             <span>Episodes - </span>
-            <span>{show.embedded.episodes.length}</span>
+            <span>{show._embedded.episodes.length}</span>
           </p>
           <p>
             <img alt="Show" src={show.image.medium} />
