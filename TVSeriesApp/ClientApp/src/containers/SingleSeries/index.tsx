@@ -25,6 +25,23 @@ function SingleSeries(): React.JSX.Element {
     const fetchShow = async (): Promise<void> => {
       if (id) {
         const innerShow = await Api.SeriesService.getShow(id);
+
+        // Create the data object with the desired properties
+        const data = {
+          name: innerShow.name,
+          premiered: innerShow.premiered,
+          rating: innerShow.rating.average,
+        };
+
+        // Send the show data to the backend API
+        await fetch('/api/shows', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
         setShow(innerShow);
       }
     };

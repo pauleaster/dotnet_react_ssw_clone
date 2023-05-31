@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using TVSeriesApp.Models;
 
 namespace TVSeriesApp
 {
@@ -27,6 +28,9 @@ namespace TVSeriesApp
                  .ConfigureServices((hostContext, services) =>
                  {
                      services.AddMvc(options => options.EnableEndpointRouting = false);
+
+                     // Register the ApplicationDbContext as a service
+                     services.AddDbContext<ApplicationDbContext>();
 
                      // In production, the React files will be served from this directory
                      services.AddSpaStaticFiles(configuration =>
