@@ -4,12 +4,36 @@ import { useLocation } from 'react-router-dom';
 export function AddToFavourites(): React.ReactElement {
   const location = useLocation();
   const { show } = location.state || { show: null };
+  const [message, setMessage] = useState('');
+
+  const addToFavourites = async (): Promise<void> => {
+    try {
+      const response = await fetch('/api/favourites', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(show),
+      });
+
+      if (response.ok) {
+        setMessage(`Show "${show.name}" added to favourites successfully`);
+      } else {
+        setMessage(`Error adding show to favourites: ${response.status}`);
+      }
+    } catch (error) {
+      setMessage(`Error adding show to favourites: ${error}`);
+    }
+  };
+
+  useEffect(() => {
+    addToFavourites();
+  }, []); // Run only once on component mount
 
   return (
     <div>
-      <h1>Add to Favourites</h1>
-      <p>Show Name: {show.name}</p>
-      {/* Display other properties of the show object as needed */}
+      <h1>Favourites</h1>
+      <p>{message}</p>
     </div>
   );
 }
