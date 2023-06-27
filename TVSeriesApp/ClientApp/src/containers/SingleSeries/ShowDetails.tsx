@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Show from './Show';
 
 interface ShowDetailsProps {
@@ -6,6 +7,12 @@ interface ShowDetailsProps {
 }
 
 function ShowDetails({ show }: ShowDetailsProps): React.ReactElement {
+  const navigate = useNavigate();
+
+  const addToFavorites = (): void => {
+    navigate('/addtofavourites', { state: { show } });
+  };
+
   return (
     <div>
       <p>{show.name}</p>
@@ -24,6 +31,11 @@ function ShowDetails({ show }: ShowDetailsProps): React.ReactElement {
       </p>
       <p>
         <img alt="Show" src={show.image.medium} />
+      </p>
+      <p>
+        <button type="button" onClick={addToFavorites}>
+          Add to favourites
+        </button>
       </p>
     </div>
   );
