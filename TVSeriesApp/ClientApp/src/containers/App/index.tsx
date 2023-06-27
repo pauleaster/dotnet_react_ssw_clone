@@ -13,6 +13,9 @@ export class App extends React.Component<object, object> {
             <Router.Link to="/" style={{ color: '#FFF' }}>
               TV Series List
             </Router.Link>
+            <Router.Link to="/favourites" style={{ color: '#FFF' }}>
+              Favourites
+            </Router.Link>
           </h1>
         </header>
         <Main />

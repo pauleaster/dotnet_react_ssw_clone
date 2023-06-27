@@ -9,7 +9,7 @@ interface ShowDetailsProps {
 function ShowDetails({ show }: ShowDetailsProps): React.ReactElement {
   const navigate = useNavigate();
 
-  const addToFavorites = (): void => {
+  const addTofavourites = (): void => {
     navigate('/addtofavourites', { state: { show } });
   };
 
@@ -33,7 +33,7 @@ function ShowDetails({ show }: ShowDetailsProps): React.ReactElement {
         <img alt="Show" src={show.image.medium} />
       </p>
       <p>
-        <button type="button" onClick={addToFavorites}>
+        <button type="button" onClick={addTofavourites}>
           Add to favourites
         </button>
       </p>
