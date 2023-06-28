@@ -90,7 +90,8 @@ namespace TVSeriesApp.Controllers
                 {
                     Name = favouriteDto.Name,
                     Premiered = favouriteDto.Premiered,
-                    Rating = favouriteDto.Rating
+                    Rating = favouriteDto.Rating,
+                    MyRating = null
                 };
 
                 // Add the new favourite to the context and save changes to the database
@@ -108,16 +109,95 @@ namespace TVSeriesApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetFavorites()
+        public IActionResult GetFavourites()
         {
             try
             {
-                var favorites = _context.Favourites.ToList();
-                return Ok(favorites);
+                var favourites = _context.Favourites.ToList();
+                return Ok(favourites);
             }
             catch (Exception ex)
             {
-                _logger.LogError("Error fetching favorites: {0}", ex);
+                _logger.LogError("Error fetching favourites: {0}", ex);
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFavourite(int id)
+        {
+            try
+            {
+                // Find the favourite by ID
+                var favourite = await _context.Favourites.FindAsync(id);
+
+                // If the favourite doesn't exist, return a not found response
+                if (favourite == null)
+                {
+                    return NotFound();
+                }
+
+                // Remove the favourite from the context
+                _context.Favourites.Remove(favourite);
+
+                // Save changes to the database
+                await _context.SaveChangesAsync();
+
+                // Return a success response
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error deleting favourite: {0}", ex);
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateFavouriteRating(int id, [FromBody] CreateFavouriteDto updateDto)
+        {
+            try
+            {
+                // Find the favourite by ID
+                var favourite = await _context.Favourites.FindAsync(id);
+
+                // If the favourite doesn't exist, return a not found response
+                if (favourite == null)
+                {
+                    return NotFound();
+                }
+
+                // Update the MyRating property of the favourite
+                favourite.MyRating = updateDto.MyRating;
+
+                // Log the favourite variable
+                _logger.LogInformation("Received favourite: {@favourite}", favourite);
+                _logger.LogInformation(
+                    "favourite.Name: {@favourite.Name}",
+                    favourite.Name
+                );
+                _logger.LogInformation(
+                    "favourite.Premiered: {@favourite.Premiered}",
+                    favourite.Premiered
+                );
+                _logger.LogInformation(
+                    "favourite.Rating: {@favourite.Rating}",
+                    favourite.Rating
+                );
+                _logger.LogInformation(
+                    "favourite.MyRating: {@favourite.MyRating}",
+                    favourite.MyRating
+                );
+
+                // Save changes to the database
+                await _context.SaveChangesAsync();
+
+                // Return a success response
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error updating favourite rating: {0}", ex);
                 return BadRequest();
             }
         }
