@@ -106,5 +106,20 @@ namespace TVSeriesApp.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        public IActionResult GetFavorites()
+        {
+            try
+            {
+                var favorites = _context.Favourites.ToList();
+                return Ok(favorites);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Error fetching favorites: {0}", ex);
+                return BadRequest();
+            }
+        }
     }
 }

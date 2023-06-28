@@ -46,6 +46,7 @@ export function AddToFavourites(): React.ReactElement {
 
 export function ListFavourites(): React.ReactElement {
   const [favourites, setfavourites] = useState<any[]>([]);
+  const [selectedFavourite, setSelectedFavourite] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -69,21 +70,35 @@ export function ListFavourites(): React.ReactElement {
     fetchfavourites();
   }, []);
 
+  const handleSelectFavourite = (favourite: any): void => {
+    setSelectedFavourite(favourite);
+  };
+
   return (
     <div>
       <h1>List Favourites</h1>
       {loading && <p>Loading...</p>}
       {!loading && favourites.length > 0 && (
-        <>
-          {favourites.map(favorite => (
-            <div key={favorite.id}>
-              <p>Show Name: {favorite.name}</p>
-              {/* Display other properties of the favorite object as needed */}
-            </div>
+        <select
+          value={selectedFavourite ? selectedFavourite.id : ''}
+          onChange={e => handleSelectFavourite(favourites.find(favourite => favourite.id === e.target.value))}
+        >
+          <option value="">Select a favourite</option>
+          {favourites.map(favourite => (
+            <option key={favourite.id} value={favourite.id}>
+              {favourite.name}
+            </option>
           ))}
-        </>
+        </select>
       )}
       {!loading && favourites.length === 0 && <p>No favourites found.</p>}
+      {!loading && selectedFavourite && (
+        <div>
+          <h2>Selected Favourite</h2>
+          <p>Name: {selectedFavourite.name}</p>
+          {/* Display other properties of the selected favourite object as needed */}
+        </div>
+      )}
     </div>
   );
 }
