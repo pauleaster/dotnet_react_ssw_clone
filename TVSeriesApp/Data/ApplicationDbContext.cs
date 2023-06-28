@@ -17,7 +17,6 @@ namespace TVSeriesApp.Models
             _logger = logger;
         }
         public DbSet<Show> Shows { get; set; }
-        public DbSet<Show> Favourites { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
