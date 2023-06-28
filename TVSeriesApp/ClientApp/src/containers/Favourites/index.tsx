@@ -8,12 +8,18 @@ export function AddToFavourites(): React.ReactElement {
 
   const addToFavourites = async (): Promise<void> => {
     try {
+      const showData = {
+        Name: show.name,
+        Premiered: show.premiered,
+        Rating: show.rating.average,
+      };
+
       const response = await fetch('/api/favourites', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(show),
+        body: JSON.stringify(showData),
       });
 
       if (response.ok) {

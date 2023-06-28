@@ -14,7 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using TVSeriesApp.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
+//using Microsoft.EntityFrameworkCore.SqlServer;
 using System.Diagnostics;
 
 
